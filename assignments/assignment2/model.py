@@ -40,7 +40,7 @@ class TwoLayerNet:
         # clear parameter gradients aggregated from the previous pass
         # TODO Set parameter gradient to zeros
         # Hint: using self.params() might be useful!
-#         [self.params()[param].grad.fill(0) for param in self.params().keys()]
+        [self.params()[param].grad.fill(0) for param in self.params().keys()]
 
         fout = self.l1.forward(X)
         fout = self.relu.forward(fout)
