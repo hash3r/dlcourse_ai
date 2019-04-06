@@ -182,12 +182,12 @@ class FullyConnectedLayer:
 #   db2 = np.sum(dscores, axis=0, keepdims=True)
 #         return dX
 
-        d_result = np.dot(d_out, self.W.value.T)
         d_w = np.dot(self.X.T, d_out)
         d_b = d_out.sum(axis=0)[None, :]
         self.W.grad += d_w
         self.B.grad += d_b
-        return d_result
+        d_X = np.dot(d_out, self.W.value.T)
+        return d_X
 
     def params(self):
         return {'W': self.W, 'B': self.B}
