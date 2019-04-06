@@ -19,8 +19,8 @@ class TwoLayerNet:
         # TODO Create necessary layers
 
         self.l1 = FullyConnectedLayer(n_input, hidden_layer_size)
-        self.relu = ReLULayer()
         self.l2 = FullyConnectedLayer(hidden_layer_size, n_output)
+        self.relu = ReLULayer()
         self.reg = reg
         self.w1 = self.l1.params()['W']
         self.w2 = self.l2.params()['W']
@@ -50,11 +50,11 @@ class TwoLayerNet:
         # by running forward and backward passes through the model
 
         loss, d_out = softmax_with_cross_entropy(fout, y)
-        
+
         bout = self.l2.backward(d_out)
         bout = self.relu.backward(bout)
-        bout = self.l1.backward(bout)
-        
+        self.l1.backward(bout)
+
         # After that, implement l2 regularization on all params
         # Hint: self.params() is useful again!
         
@@ -84,6 +84,5 @@ class TwoLayerNet:
 
     def params(self):
         # TODO Implement aggregating all of the params
-#         result = {'B1': self.l1.B, 'W1': self.l1.W, 'W2': self.l2.W, 'B2': self.l2.B}
         result = {"W1": self.w1, "W2": self.w2, "B1": self.b1, "B2": self.b2}
         return result
