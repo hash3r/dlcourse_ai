@@ -13,4 +13,6 @@ def multiclass_accuracy(prediction, ground_truth):
     """
 
     # TODO: Implement computing accuracy
-    return 1 - np.count_nonzero(prediction - ground_truth) / len(prediction)
+#     return 1 - np.count_nonzero(prediction - ground_truth) / len(prediction)
+    return np.count_nonzero(np.equal(prediction, ground_truth)) / prediction.shape[0]
+
